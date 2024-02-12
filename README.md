@@ -66,5 +66,4 @@ Method to delete a character (the id must match the id of an existing user).
 To run the tests, write the following commands:
 
 `npm run start:dev`
-
 `npm run test`
