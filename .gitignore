@@ -3,39 +3,23 @@
 *.js
 *.js.map
 
-
 dist/
-
 
 *.tmp
 *.bak
 
-
 .vscode/
 .idea/
 
-
-tsconfig.json
-tsconfig.*.json
-
-
-.eslintrc
 .eslintignore
 
-
-.prettierrc
 .prettierignore
-
 
 *.log
 logs/
 
-
 package-lock.json
-
 
 yarn.lock
 
-
 .env
-.env.*

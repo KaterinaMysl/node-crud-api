@@ -11,7 +11,7 @@ export const getMethodHandler = (endpoint: string, users: User[], response: Serv
       const currentPerson = users.find((user) => user.id === id);
       currentPerson
         ? sendResponse(200, response, currentPerson)
-        : sendResponse(404, response, { message: 'User not found.' });
+        : sendResponse(404, response, { message: 'User not found. Invalid user ID' });
     } else {
       sendResponse(400, response, { message: 'Not found.' });
     }
