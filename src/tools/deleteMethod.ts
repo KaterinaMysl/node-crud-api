@@ -20,7 +20,7 @@ export const deleteMethodHandler = (
           sendResponse(404, response, { message: 'User doesn\'t exist' });
         }
       } else {
-        sendResponse(400, response, { message: 'Invalid user ID' });
+        sendResponse(400, response, { message: 'User not found. Invalid user ID' });
       }
     } else {
       sendResponse(400, response, { message: 'A specific user ID is required' });
