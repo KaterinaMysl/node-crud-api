@@ -71,3 +71,10 @@ you can use another terminal
 `npm run test`
 
 if you need you can add .env near package.json like in .env.example to check tests.
+
+## Multi
+
+To run multi ports, write the following command:
+
+`npm run start:multi`
+

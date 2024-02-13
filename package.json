@@ -10,6 +10,7 @@
     "start:prod": "cross-env NODE_ENV=production npm run build && npm run start",
     "start:dev:multi": "cross-env USE_CLUSTER=true  npx nodemon --experimental-worker",
     "start:prod:multi": "cross-env NODE_ENV=production npm run build && cross-env USE_CLUSTER=true npm run start",
+    "start:multi": "ts-node ./src/servercopy.ts",
     "start": "node ./dist/bundle.js",
     "test": "jest"
   },
