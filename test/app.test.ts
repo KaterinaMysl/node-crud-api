@@ -9,7 +9,7 @@ const nodePort = process.env.NODE_PORT || 4000;
 describe('CRUD API tests', () => {  
   let currentId: string;
 
-  test('Get all records with a GET api/users request (an empty array is expected)', (done) => {
+  test('all notes get  with a GET api/users request (an empty array is expected)', (done) => {
     const expectedResult: string[] = [];
     http.get(`http://localhost:${nodePort}/api/users`, (response) => {
       let responseData = '';
@@ -25,8 +25,8 @@ describe('CRUD API tests', () => {
     });
   });
 
-  test('With a GET api/user/{userId} request, we try to get the created record by its id (the created record is expected)', (done) => {
-    http.get(`http://localhost:4000/api/users/${currentId}`, (response) => {
+  test('use a GET api/user/{userId} request, to get the created record by its id (the created record is expected)', (done) => {
+    http.get(`http://localhost:${nodePort}/api/users/${currentId}`, (response) => {
       let responseData = '';
       response.on('data', (chunk) => {
         responseData += chunk;
@@ -38,9 +38,44 @@ describe('CRUD API tests', () => {
       });
     });
   });
+  
+  test('сreate a new user with a POST api/users request', (done) => {
+    const newUser = {
+      id: 'someUniqueId',
+      username: 'TestUser',
+      age: 25,
+      hobbies: ['Programming']
+    };
 
-  test('With a GET api/users/{userId} request, we are trying to get a deleted object by id (expected answer is that there is no such object)', (done) => {
-    http.get(`http://localhost:4000/api/users/${currentId}`, (response) => {
+    const expectedUsersCount = users.length + 1;
+
+    const req = http.request({
+      method: 'POST',
+      port: nodePort,
+      path: '/api/users',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }, (res) => {
+      let data = '';
+      res.on('data', (chunk) => {
+        data += chunk;
+      });
+      res.on('end', () => {
+        expect(res.statusCode).toBe(201);
+        users.push(newUser);
+        expect(users.length).toBe(expectedUsersCount);
+        expect(users).toContainEqual(newUser);
+        done();
+      });
+    });
+
+    req.write(JSON.stringify(newUser));
+    req.end();
+  });
+  
+  test('use a GET api/users/{userId} request, to get a deleted object by id (expected answer is that there is no such object)', (done) => {
+    http.get(`http://localhost:${nodePort}/api/users/${currentId}`, (response) => {
       let responseData = '';
       response.on('data', (chunk) => {
         responseData += chunk;

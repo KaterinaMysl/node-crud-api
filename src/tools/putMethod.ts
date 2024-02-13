@@ -35,7 +35,7 @@ export const putMethodHandler = (
               sendResponse(
                 400,
                 response,
-                { message: 'The request does not contain required parameters or the parameters are incorrect' }
+                { message: 'The parameters are incorrect or the request doesn\'t contain required parameters' }
               );
             }
           } else {
